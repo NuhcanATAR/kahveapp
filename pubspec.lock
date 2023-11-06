@@ -565,6 +565,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.18.1"
+  intro_slider:
+    dependency: "direct main"
+    description:
+      name: intro_slider
+      sha256: cfbaf3c2dc02aaa50067a2a51f144b5bd697a744243f30269eca0f3596ca675f
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.10"
   js:
     dependency: transitive
     description:
