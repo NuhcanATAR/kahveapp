@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intro_slider/intro_slider.dart';
-import 'package:kahve/feature/log_reg_pass/login/login_view.dart';
+import 'package:kahve/feature/log_reg_pass/logreg_view.dart';
 import 'package:kahve/product/constants/color_constants.dart';
 import 'package:kahve/product/constants/img_constants.dart';
 import 'package:kahve/product/constants/string_constants.dart';
@@ -48,7 +48,7 @@ class _SplashSliderViewState extends State<SplashSliderView> {
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => const LoginView(),
+              builder: (context) => const LogRegView(),
             ),
             (Route<dynamic> route) => false,
           );
