@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kahve/feature/log_reg_pass/password/password_view.dart';
 import 'package:kahve/feature/main_view/bottommenu_view/bottommenu_view.dart';
 
 class LoginViewRouterService {
@@ -7,6 +8,16 @@ class LoginViewRouterService {
       context,
       MaterialPageRoute(
         builder: (context) => const BottomMenuView(),
+      ),
+    );
+  }
+
+  // forgot password router
+  void forgotPasswordNavigatorRouter(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const PasswordView(),
       ),
     );
   }

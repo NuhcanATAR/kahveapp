@@ -60,8 +60,8 @@ class _CenterBodyWidgetState extends State<CenterBodyWidget> {
                             buildRememberMeWidget(context, context.general),
                             // login button
                             buildLoginButtonWidget(context),
-                            // register button
-                            buildRegisterButtonWidget(context),
+                            // forgot password button
+                            buildForogotPasswordButtonWidget(context),
                           ],
                         ),
                       ),
@@ -243,13 +243,18 @@ class _CenterBodyWidgetState extends State<CenterBodyWidget> {
         ),
       );
 
-  // register button
-  Widget buildRegisterButtonWidget(context) => const Padding(
-        padding: EdgeInsets.only(top: 15, bottom: 10),
+  // forgot password button
+  Widget buildForogotPasswordButtonWidget(context) => Padding(
+        padding: const EdgeInsets.only(top: 15, bottom: 10),
         child: Center(
-          child: LabelMediumMainColorText(
-            text: "Şifremi Unutum!",
-            textAlign: TextAlign.center,
+          child: GestureDetector(
+            onTap: () {
+              widget.routerService.forgotPasswordNavigatorRouter(context);
+            },
+            child: const LabelMediumMainColorText(
+              text: "Şifremi Unutum!",
+              textAlign: TextAlign.center,
+            ),
           ),
         ),
       );

@@ -24,6 +24,7 @@ enum AppSplashSliderImgConstant {
 }
 
 enum AppRegisterIconConstant {
+  registerSendEmailicon('icons8-sent-64'),
   registerEmailicon('icons8-email-64');
 
   final String value;
