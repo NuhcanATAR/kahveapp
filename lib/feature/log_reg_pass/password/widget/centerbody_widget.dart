@@ -69,7 +69,7 @@ class _CenterBodyWidgetState extends State<CenterBodyWidget> {
   // email inputt
   Widget buildEmailinputWidget(context, contextkartal) => Container(
         margin: const EdgeInsets.only(
-          top: 10,
+          bottom: 10,
         ),
         padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(

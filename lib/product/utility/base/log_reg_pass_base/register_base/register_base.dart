@@ -1,10 +1,12 @@
+// ignore_for_file: use_build_context_synchronously, unused_local_variable
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kahve/product/mixin/register_mixin.dart';
 import 'package:kahve/product/model/log_reg_pas_model/register_model.dart';
 import 'package:kahve/product/router/log_reg_pas_router/register_router.dart';
 import 'package:kahve/product/utility/database/register_db/register_db.dart';
-import 'package:kahve/product/utility/service/firebase_service.dart';
+
 import 'package:kartal/kartal.dart';
 import '../../../../../product/extension/view_size.dart';
 
@@ -40,11 +42,25 @@ abstract class MainRegisterBase<T extends StatefulWidget> extends State<T>
         "EMAIL": modelService.emailController.text,
         "PASSWORD": modelService.passwordController.text,
       }).then((value) {
-        modelService.logger.i("Kullanıcı Kaydedildi");
-      }).catchError((err) {});
+        registerAlert(context.general, context);
+        modelService.nameSurnameController.clear();
+        modelService.emailController.clear();
+        modelService.passwordController.clear();
+      }).catchError((err) {
+        emailAlert(context.general, context);
+        modelService.nameSurnameController.clear();
+        modelService.emailController.clear();
+        modelService.passwordController.clear();
+      });
+
+      User? userAuth = userCredential.user;
+      await userAuth?.sendEmailVerification();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         emailAlert(context.general, context);
+        modelService.nameSurnameController.clear();
+        modelService.emailController.clear();
+        modelService.passwordController.clear();
       }
     } catch (e) {
       modelService.logger.i(e);

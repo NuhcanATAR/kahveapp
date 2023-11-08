@@ -1,14 +1,20 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:kahve/product/constants/color_constants.dart';
+import 'package:kahve/product/mixin/login_mixin.dart';
 import 'package:kahve/product/model/log_reg_pas_model/login_model.dart';
 import 'package:kahve/product/router/log_reg_pas_router/login_router.dart';
+import 'package:kartal/kartal.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../product/extension/view_size.dart';
 
-abstract class MainLoginBase<T extends StatefulWidget> extends State<T> {
+abstract class MainLoginBase<T extends StatefulWidget> extends State<T>
+    with loginMixin {
   // router service
   LoginViewRouterService routerService = LoginViewRouterService();
 
@@ -28,6 +34,39 @@ abstract class MainLoginBase<T extends StatefulWidget> extends State<T> {
 
     getConnnectivityStatus();
     _loadUserEmailPassword();
+  }
+
+  // login
+  Future<void> loginUser() async {
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: modelService.emailController.text.toString(),
+        password: modelService.passwordController.text.toString(),
+      );
+
+      User? user = userCredential.user;
+
+      if (!user!.emailVerified) {
+        throw FirebaseAuthException(
+          code: 'email-not-verified',
+          message: 'E-postanızı doğurlamadan giriş yapamazsınız!',
+        );
+      }
+      routerService.loginMainBottomMenuViewNavigatorRouter(context);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        userNotFound(context, context.general);
+      } else if (e.code == 'wrong-password') {
+        wrongPassword(context, context.general);
+      } else if (e.code == 'too-many-requests') {
+        tooManyRequest(context, context.general);
+      } else if (e.code == 'email-not-verified') {
+        requiresrecentlogin(context, context.general);
+      }
+    } catch (e) {
+      modelService.logger.i(e);
+    }
   }
 
   // connectivity status
@@ -114,8 +153,30 @@ abstract class MainLoginBase<T extends StatefulWidget> extends State<T> {
         });
         modelService.emailController.text = _email;
         modelService.passwordController.text = _password;
-        // ignore: use_build_context_synchronously
-        routerService.loginMainBottomMenuViewNavigatorRouter(context);
+
+        FirebaseAuth auth = FirebaseAuth.instance;
+        User? user = auth.currentUser;
+
+        if (user != null) {
+          if (user.emailVerified) {
+            String uid = user.uid;
+            modelService.logger.i("Kullanıcı UID: $uid");
+
+            routerService.loginMainBottomMenuViewNavigatorRouter(context);
+          } else {
+            final snackBar = SnackBar(
+              content: const Text('E-mail Adresinizi Doğrulayınız!'),
+              action: SnackBarAction(
+                label: 'Tamam',
+                onPressed: () {},
+              ),
+            );
+
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          }
+        } else {
+          modelService.logger.i("Mevcut oturumda kullanıcı yok.");
+        }
       }
     } catch (e) {
       // ignore: avoid_print

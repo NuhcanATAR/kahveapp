@@ -8,7 +8,8 @@ mixin passwordMixin {
     var alertEmailFalseDialog = AlertDialog(
       title: SizedBox(
         height: 75,
-        child: AppRegisterIconConstant.registerSendEmailicon.toImg,
+        child:
+            AppLoginRegisterPasswordIconsConstant.registerSendEmailicon.toImg,
       ),
       content: SizedBox(
         height: MediaQuery.sizeOf(context).height * 0.11,

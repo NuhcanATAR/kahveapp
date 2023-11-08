@@ -23,12 +23,17 @@ enum AppSplashSliderImgConstant {
   Image get toImg => Image.asset(toPng);
 }
 
-enum AppRegisterIconConstant {
+enum AppLoginRegisterPasswordIconsConstant {
   registerSendEmailicon('icons8-sent-64'),
-  registerEmailicon('icons8-email-64');
+  registerEmailicon('icons8-email-64'),
+  registerRegistericon('icons8-check-64'),
+  loginUserNotFounticon('icons8-user-not-found-50'),
+  loginPasswordFalseicon('icons8-wrong-password-50'),
+
+  loginUserBannedicon('icons8-warning-50');
 
   final String value;
-  const AppRegisterIconConstant(this.value);
+  const AppLoginRegisterPasswordIconsConstant(this.value);
 
   String get toPng => "assets/icons/register_icons/$value.png";
   Image get toImg => Image.asset(toPng);

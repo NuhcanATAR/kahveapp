@@ -58,5 +58,6 @@ class _LoginViewState extends MainLoginBase<LoginView> {
         dynamicHeight: dynamicHeight,
         routerService: routerService,
         loginModel: modelService,
+        loginUser: loginUser,
       );
 }

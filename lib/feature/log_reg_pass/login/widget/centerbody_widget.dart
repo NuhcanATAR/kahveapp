@@ -13,11 +13,13 @@ class CenterBodyWidget extends StatefulWidget {
     required this.dynamicHeight,
     required this.routerService,
     required this.loginModel,
+    required this.loginUser,
   });
   final dynamic maxWidth;
   final dynamic dynamicHeight;
   final dynamic routerService;
   final dynamic loginModel;
+  final dynamic loginUser;
 
   @override
   State<CenterBodyWidget> createState() => _CenterBodyWidgetState();
@@ -31,44 +33,47 @@ class _CenterBodyWidgetState extends State<CenterBodyWidget> {
       child: Center(
         child: Padding(
             padding: const EdgeInsets.only(left: 30, right: 30),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                  height: widget.dynamicHeight(0.2),
-                ),
-                FadeInUp(
-                  child: Card(
-                    child: SizedBox(
-                      width: widget.maxWidth,
-                      child: Container(
-                        padding: context.padding.normal,
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(4),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: widget.dynamicHeight(0.2),
+                  ),
+                  FadeInUp(
+                    child: Card(
+                      child: SizedBox(
+                        width: widget.maxWidth,
+                        child: Container(
+                          padding: context.padding.normal,
+                          decoration: const BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(4),
+                            ),
                           ),
-                        ),
-                        child: Column(
-                          children: <Widget>[
-                            // email input
-                            buildEmailinputWidget(context, context.general),
-                            // password input
-                            buildPasswordinputWidget(context, context.general),
-                            // remember me
-                            buildRememberMeWidget(context, context.general),
-                            // login button
-                            buildLoginButtonWidget(context),
-                            // forgot password button
-                            buildForogotPasswordButtonWidget(context),
-                          ],
+                          child: Column(
+                            children: <Widget>[
+                              // email input
+                              buildEmailinputWidget(context, context.general),
+                              // password input
+                              buildPasswordinputWidget(
+                                  context, context.general),
+                              // remember me
+                              buildRememberMeWidget(context, context.general),
+                              // login button
+                              buildLoginButtonWidget(context),
+                              // forgot password button
+                              buildForogotPasswordButtonWidget(context),
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             )),
       ),
     );
@@ -221,7 +226,9 @@ class _CenterBodyWidgetState extends State<CenterBodyWidget> {
         padding: const EdgeInsets.only(bottom: 10),
         child: GestureDetector(
           onTap: () {
-            if (widget.loginModel.formLoginKey.currentState!.validate()) {}
+            if (widget.loginModel.formLoginKey.currentState!.validate()) {
+              widget.loginUser();
+            }
           },
           child: SizedBox(
             width: widget.maxWidth,

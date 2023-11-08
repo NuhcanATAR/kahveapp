@@ -9,7 +9,7 @@ mixin RegisterMixin {
     var alertEmailAlreadyInUserDialog = AlertDialog(
       title: SizedBox(
         height: 75,
-        child: AppRegisterIconConstant.registerEmailicon.toImg,
+        child: AppLoginRegisterPasswordIconsConstant.registerEmailicon.toImg,
       ),
       content: SizedBox(
         height: MediaQuery.sizeOf(context).height * 0.11,
@@ -35,6 +35,39 @@ mixin RegisterMixin {
     showDialog(
       context: context,
       builder: (context) => alertEmailAlreadyInUserDialog,
+    );
+  }
+
+  void registerAlert(contextgeneral, context) {
+    var alertregisterDialog = AlertDialog(
+      title: SizedBox(
+        height: 75,
+        child: AppLoginRegisterPasswordIconsConstant.registerRegistericon.toImg,
+      ),
+      content: SizedBox(
+        height: MediaQuery.sizeOf(context).height * 0.11,
+        child: const SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              BodyMediumBlackBoldText(
+                  textAlign: TextAlign.center, text: "Hesabınız Oluşturuldu!"),
+              SizedBox(
+                height: 10,
+              ),
+              LabelMediumGreyText(
+                textAlign: TextAlign.center,
+                text:
+                    "Kahve uygulamasına hoşgeldiniz, hesabınız oluşturuldu giriş yapabilirsiniz.",
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    // ignore: use_build_context_synchronously
+    showDialog(
+      context: context,
+      builder: (context) => alertregisterDialog,
     );
   }
 }
