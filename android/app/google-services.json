@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "447634257197",
+    "project_id": "kahvedb",
+    "storage_bucket": "kahvedb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447634257197:android:ff0bff3d6cdcf1642ecfa4",
+        "android_client_info": {
+          "package_name": "com.nuhcan.kahve"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4a47BnundjxWb3Z1hODFITVoGAsjOIag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

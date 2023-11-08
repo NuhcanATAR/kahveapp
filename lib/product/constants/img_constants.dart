@@ -22,3 +22,13 @@ enum AppSplashSliderImgConstant {
   String get toPng => "assets/images/slider_img/$value.png";
   Image get toImg => Image.asset(toPng);
 }
+
+enum AppRegisterIconConstant {
+  registerEmailicon('icons8-email-64');
+
+  final String value;
+  const AppRegisterIconConstant(this.value);
+
+  String get toPng => "assets/icons/register_icons/$value.png";
+  Image get toImg => Image.asset(toPng);
+}

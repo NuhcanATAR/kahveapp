@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kahve/feature/splash/splash.dart';
+import 'package:kahve/product/initialize/app_start.dart';
 
 void main() async {
+  await AppStart.initStart();
   runApp(
     const MainView(),
   );

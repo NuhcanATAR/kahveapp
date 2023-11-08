@@ -55,6 +55,7 @@ dependencies:
   intl: ^0.18.1
   intro_slider: ^3.0.10
 
+
   # utility
   animated_text_kit: ^4.2.2
   loading_animation_widget: ^1.2.0+4
@@ -96,6 +97,9 @@ flutter:
     - assets/images/splash_img/
   # splash sliders images
     - assets/images/slider_img/
+  
+  # register icons
+    - assets/icons/register_icons/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

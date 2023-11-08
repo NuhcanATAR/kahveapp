@@ -14,17 +14,15 @@ class TopBodyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FadeInDown(
-      child: Positioned(
-        top: 0,
-        left: 0,
-        right: 0,
+    return Positioned(
+      top: 0,
+      child: FadeInDown(
         child: SizedBox(
           width: maxWidth,
           height: dynamicHeight(0.5),
           child: Container(
             padding: const EdgeInsets.only(
-                left: 120, right: 120, bottom: 140, top: 140),
+                left: 120, right: 120, bottom: 120, top: 140),
             decoration: BoxDecoration(
               color: ColorBackgroundConstant.greenDarker,
               borderRadius: const BorderRadius.only(
