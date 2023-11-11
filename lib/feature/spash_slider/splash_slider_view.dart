@@ -5,6 +5,7 @@ import 'package:kahve/feature/log_reg_pass/logreg_view.dart';
 import 'package:kahve/product/constants/color_constants.dart';
 import 'package:kahve/product/constants/img_constants.dart';
 import 'package:kahve/product/constants/string_constants.dart';
+import 'package:kahve/product/utility/base/log_reg_pass_base/login_base/login_base.dart';
 import 'package:kartal/kartal.dart';
 
 class SplashSliderView extends StatefulWidget {
@@ -14,7 +15,7 @@ class SplashSliderView extends StatefulWidget {
   State<SplashSliderView> createState() => _SplashSliderViewState();
 }
 
-class _SplashSliderViewState extends State<SplashSliderView> {
+class _SplashSliderViewState extends MainLoginBase<SplashSliderView> {
   List<Slide> slides = [];
 
   @override
