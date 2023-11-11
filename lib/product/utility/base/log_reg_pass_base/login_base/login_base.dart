@@ -53,7 +53,7 @@ abstract class MainLoginBase<T extends StatefulWidget> extends State<T>
           message: 'E-postanızı doğurlamadan giriş yapamazsınız!',
         );
       }
-      routerService.loginMainBottomMenuViewNavigatorRouter(context);
+      routerService.loginControlRouterViewNavigatorRouter(context);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         userNotFound(context, context.general);
@@ -162,7 +162,7 @@ abstract class MainLoginBase<T extends StatefulWidget> extends State<T>
             String uid = user.uid;
             modelService.logger.i("Kullanıcı UID: $uid");
 
-            routerService.loginMainBottomMenuViewNavigatorRouter(context);
+            routerService.loginControlRouterViewNavigatorRouter(context);
           } else {
             final snackBar = SnackBar(
               content: const Text('E-mail Adresinizi Doğrulayınız!'),
