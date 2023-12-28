@@ -18,6 +18,7 @@ class _ProfileViewState extends MainProfileBase<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         centerTitle: true,
@@ -80,5 +81,7 @@ class _ProfileViewState extends MainProfileBase<ProfileView> {
         emailUpdViewRouter: emailUpdViewNavigatorRouter,
         ordersViewRouter: ordersViewNavigatorRouter,
         savedAdressViewRouter: savedAdresViewNavigatorRouter,
+        nameSurnameUpd: nameSurnameUpd,
+        accountExitDialog: accountExitDialog,
       );
 }

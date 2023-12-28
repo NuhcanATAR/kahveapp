@@ -31,7 +31,7 @@ class ProfileTopCard extends StatelessWidget {
   // profile image
   Widget get buildProfileimgWidget => SizedBox(
         width: dynamicWidth(0.27),
-        height: dynamicHeight(0.15),
+        height: dynamicHeight(0.13),
         child: Container(
           decoration: const BoxDecoration(
             color: Colors.white,

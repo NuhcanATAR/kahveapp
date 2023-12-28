@@ -13,6 +13,8 @@ class MenusWidget extends StatelessWidget {
     required this.emailUpdViewRouter,
     required this.ordersViewRouter,
     required this.savedAdressViewRouter,
+    required this.nameSurnameUpd,
+    required this.accountExitDialog,
   });
   final dynamic maxWidth;
   final dynamic dynamicWidth;
@@ -22,6 +24,8 @@ class MenusWidget extends StatelessWidget {
   final dynamic emailUpdViewRouter;
   final dynamic ordersViewRouter;
   final dynamic savedAdressViewRouter;
+  final dynamic nameSurnameUpd;
+  final dynamic accountExitDialog;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +35,8 @@ class MenusWidget extends StatelessWidget {
           height: dynamicHeight(0.03),
         ),
         // user edit mennu
-        buildUserEditMenuWidget(context),
+        buildUserEditMenuWidget(
+            context, data, maxWidth, dynamicHeight, nameSurnameUpd),
         // maıl update menu
         buildMailupdateMenuWidget(context),
         // orders
@@ -39,17 +44,20 @@ class MenusWidget extends StatelessWidget {
         // order adress
         buildOrderAdressMenuWidget(context),
         // exit account
-        buildExitAccountMenuWidget,
+        buildExitAccountMenuWidget(context),
       ],
     );
   }
 
   // user edit mennu
-  Widget buildUserEditMenuWidget(context) => Padding(
+  Widget buildUserEditMenuWidget(
+          context, data, maxWidth, dynamicHeight, nameSurnameUpd) =>
+      Padding(
         padding: const EdgeInsets.only(top: 15, bottom: 15),
         child: GestureDetector(
           onTap: () {
-            nameSurnameUpdViewRouter(context);
+            nameSurnameUpdViewRouter(
+                context, data, maxWidth, dynamicHeight, nameSurnameUpd);
           },
           child: Row(
             children: <Widget>[
@@ -177,10 +185,12 @@ class MenusWidget extends StatelessWidget {
       );
 
   // exit account
-  Widget get buildExitAccountMenuWidget => Padding(
+  Widget buildExitAccountMenuWidget(context) => Padding(
         padding: const EdgeInsets.only(top: 15, bottom: 15),
         child: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            accountExitDialog(context);
+          },
           child: const Row(
             children: <Widget>[
               Icon(

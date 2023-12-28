@@ -25,3 +25,12 @@ class SplashSliderTextConstants {
   static const String sliderSubTitleText5 =
       "Uygulama içinde kampanya ve indirimler hakkında bilgi alabilirsin.";
 }
+
+@immutable
+class AppProfileViewTextConstants {
+  const AppProfileViewTextConstants._();
+
+  static const String emailUpdTitle = "Email Adresi Değişmez!";
+  static const String emailUpdSubTitle =
+      "Kayıtlı email adresinizi değiştiremezsiniz, daha fazla bilgi için bizle iletişime geçin!";
+}
