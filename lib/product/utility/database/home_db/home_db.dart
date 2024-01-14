@@ -48,6 +48,13 @@ enum HomeServiceDB {
           .orderBy('DATE', descending: true)
           .snapshots();
 
+  Stream<QuerySnapshot<Map<String, dynamic>>> subCategoryProductList(
+          Map<String, dynamic> data) =>
+      FirebaseFirestore.instance
+          .collection(name)
+          .where("SUBCATEGORYID", isEqualTo: data['ID'])
+          .snapshots();
+
   Stream<QuerySnapshot<Map<String, dynamic>>> get mainCategoryList =>
       FirebaseFirestore.instance.collection(name).snapshots();
 
