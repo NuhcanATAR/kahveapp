@@ -1,5 +1,14 @@
 import 'package:flutter/widgets.dart';
 
+enum AppMainImgConstant {
+  appNoConnectionErrorImg('noconnection');
+
+  final String value;
+  const AppMainImgConstant(this.value);
+  String get toPng => "assets/images/noconnection_img/$value.png";
+  Image get toImg => Image.asset(toPng);
+}
+
 enum ImgLogoConstants {
   appLogo('applogo');
 
@@ -46,5 +55,15 @@ enum AppProfileViewImagesConstant {
   const AppProfileViewImagesConstant(this.value);
 
   String get toPng => "assets/images/profile_img/$value.png";
+  Image get toImg => Image.asset(toPng);
+}
+
+enum AppHomeViewImageConstant {
+  profileIMG('account_img');
+
+  final String value;
+  const AppHomeViewImageConstant(this.value);
+
+  String get toPng => "assets/images/home_img/$value.png";
   Image get toImg => Image.asset(toPng);
 }
