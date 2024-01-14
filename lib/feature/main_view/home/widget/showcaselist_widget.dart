@@ -7,11 +7,13 @@ import 'package:kahve/product/widget/text_widget/label_medium_text.dart';
 
 class ShowCaseListWidget extends StatelessWidget {
   const ShowCaseListWidget(
-      {required this.maxWidth,
+      {required this.routerService,
+      required this.maxWidth,
       required this.dynamicWidth,
       required this.dynamicHeight,
       super.key});
 
+  final dynamic routerService;
   final dynamic maxWidth;
   final dynamic dynamicWidth;
   final dynamic dynamicHeight;
@@ -78,7 +80,9 @@ class ShowCaseListWidget extends StatelessWidget {
 
   // product card widget
   Widget buildProductCardWidget(context, data) => GestureDetector(
-        onTap: () {},
+        onTap: () {
+          routerService.productDetailViewNavigatorRouter(context, data);
+        },
         child: Card(
           child: SizedBox(
             width: dynamicWidth(0.47),

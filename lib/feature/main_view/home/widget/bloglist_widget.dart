@@ -8,11 +8,13 @@ import 'package:kahve/product/widget/text_widget/label_medium_text.dart';
 
 class BlogListWidget extends StatelessWidget {
   const BlogListWidget(
-      {required this.maxWidth,
+      {required this.routerService,
+      required this.maxWidth,
       required this.dynamicHeight,
       required this.dynamicWidth,
       super.key});
 
+  final dynamic routerService;
   final dynamic maxWidth;
   final dynamic dynamicHeight;
   final dynamic dynamicWidth;
@@ -74,19 +76,24 @@ class BlogListWidget extends StatelessWidget {
   }
 
   // blog card widget
-  Widget buildBlogCardWidget(context, data) => Card(
-        child: SizedBox(
-          width: maxWidth,
-          height: dynamicHeight(0.17),
-          child: Container(
-            padding: const EdgeInsets.all(5),
-            child: Row(
-              children: <Widget>[
-                // cover ımg
-                buildCoverImgWidget(context, data),
-                // title, sub title
-                buildTitleSubTitleWidget(context, data),
-              ],
+  Widget buildBlogCardWidget(context, data) => GestureDetector(
+        onTap: () {
+          routerService.blogDetailViewNavigatorRouter(context, data);
+        },
+        child: Card(
+          child: SizedBox(
+            width: maxWidth,
+            height: dynamicHeight(0.17),
+            child: Container(
+              padding: const EdgeInsets.all(5),
+              child: Row(
+                children: <Widget>[
+                  // cover ımg
+                  buildCoverImgWidget(context, data),
+                  // title, sub title
+                  buildTitleSubTitleWidget(context, data),
+                ],
+              ),
             ),
           ),
         ),

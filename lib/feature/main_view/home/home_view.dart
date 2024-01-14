@@ -29,20 +29,25 @@ class _HomeViewState extends MainHomeBaseState<HomeView> {
         elevation: 0,
         title: Row(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: SizedBox(
-                width: 40,
-                height: 40,
-                child: Container(
-                  padding: const EdgeInsets.all(5),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(4),
+            GestureDetector(
+              onTap: () {
+                routerService.profileViewNavigatorRouter(context);
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: SizedBox(
+                  width: 40,
+                  height: 40,
+                  child: Container(
+                    padding: const EdgeInsets.all(5),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(4),
+                      ),
                     ),
+                    child: AppHomeViewImageConstant.profileIMG.toImg,
                   ),
-                  child: AppHomeViewImageConstant.profileIMG.toImg,
                 ),
               ),
             ),
@@ -58,32 +63,37 @@ class _HomeViewState extends MainHomeBaseState<HomeView> {
                     ),
                   ),
                   // name surname
-                  FutureBuilder<DocumentSnapshot>(
-                    future: HomeServiceDB.USERS.userRefTable,
-                    builder: (BuildContext context,
-                        AsyncSnapshot<DocumentSnapshot> snapshot) {
-                      if (snapshot.hasError) {
-                        return const SizedBox();
-                      }
-
-                      if (snapshot.hasData && !snapshot.data!.exists) {
-                        return const SizedBox();
-                      }
-
-                      if (snapshot.connectionState == ConnectionState.done) {
-                        Map<String, dynamic> data =
-                            snapshot.data!.data() as Map<String, dynamic>;
-                        return SizedBox(
-                          width: maxWidth,
-                          child: LabelMediumBlackBoldText(
-                            text: "${data['NAMESURNAME']}",
-                            textAlign: TextAlign.left,
-                          ),
-                        );
-                      } else {
-                        return const SizedBox();
-                      }
+                  GestureDetector(
+                    onTap: () {
+                      routerService.profileViewNavigatorRouter(context);
                     },
+                    child: FutureBuilder<DocumentSnapshot>(
+                      future: HomeServiceDB.USERS.userRefTable,
+                      builder: (BuildContext context,
+                          AsyncSnapshot<DocumentSnapshot> snapshot) {
+                        if (snapshot.hasError) {
+                          return const SizedBox();
+                        }
+
+                        if (snapshot.hasData && !snapshot.data!.exists) {
+                          return const SizedBox();
+                        }
+
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          Map<String, dynamic> data =
+                              snapshot.data!.data() as Map<String, dynamic>;
+                          return SizedBox(
+                            width: maxWidth,
+                            child: LabelMediumBlackBoldText(
+                              text: "${data['NAMESURNAME']}",
+                              textAlign: TextAlign.left,
+                            ),
+                          );
+                        } else {
+                          return const SizedBox();
+                        }
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -91,12 +101,17 @@ class _HomeViewState extends MainHomeBaseState<HomeView> {
           ],
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: Icon(
-              Icons.notifications,
-              color: ColorBackgroundConstant.greenDarker,
-              size: 20,
+          GestureDetector(
+            onTap: () {
+              routerService.noficationViewNavigator(context);
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: Icon(
+                Icons.notifications,
+                color: ColorBackgroundConstant.greenDarker,
+                size: 20,
+              ),
             ),
           ),
         ],
@@ -125,24 +140,28 @@ class _HomeViewState extends MainHomeBaseState<HomeView> {
 
   // search
   Widget get buildSearchWidget => SearchWidget(
+        routerService: routerService,
         maxWidth: maxWidth,
         dynamicHeight: dynamicHeight,
       );
 
   // category list
   Widget get buildCategoryListWidget => CategoryListWidget(
+        routerService: routerService,
         maxWidth: maxWidth,
         dynamicHeight: dynamicHeight,
       );
 
   // slider list
   Widget get buildSliderListWidget => SliderListWidget(
+        routerService: routerService,
         maxWidth: maxWidth,
         dynamicHeight: dynamicHeight,
       );
 
   // show case list
   Widget get buildShowCaseListWidget => ShowCaseListWidget(
+        routerService: routerService,
         maxWidth: maxWidth,
         dynamicWidth: dynamicWidth,
         dynamicHeight: dynamicHeight,
@@ -150,6 +169,7 @@ class _HomeViewState extends MainHomeBaseState<HomeView> {
 
   // blog list
   Widget get buildBlogListWidget => BlogListWidget(
+        routerService: routerService,
         maxWidth: maxWidth,
         dynamicHeight: dynamicHeight,
         dynamicWidth: dynamicWidth,

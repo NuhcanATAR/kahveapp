@@ -9,6 +9,16 @@ enum AppMainImgConstant {
   Image get toImg => Image.asset(toPng);
 }
 
+enum AppErrorImgConstant {
+  appErrorImg('error_img');
+
+  final String value;
+  const AppErrorImgConstant(this.value);
+
+  String get toPng => "assets/images/error_img/$value.png";
+  Image get toImg => Image.asset(toPng);
+}
+
 enum ImgLogoConstants {
   appLogo('applogo');
 

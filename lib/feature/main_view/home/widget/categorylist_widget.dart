@@ -8,11 +8,13 @@ import 'package:kahve/product/widget/text_widget/label_medium_text.dart';
 
 class CategoryListWidget extends StatelessWidget {
   const CategoryListWidget({
+    required this.routerService,
     required this.maxWidth,
     required this.dynamicHeight,
     super.key,
   });
 
+  final dynamic routerService;
   final dynamic maxWidth;
   final dynamic dynamicHeight;
   @override
@@ -45,7 +47,9 @@ class CategoryListWidget extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        routerService.mainCategoryViewNavigatorRouter(context);
+                      },
                       child: LabelMediumMainColorText(
                         text: HomeStrings.categoryNextText.value,
                         textAlign: TextAlign.center,
@@ -67,7 +71,10 @@ class CategoryListWidget extends StatelessWidget {
                       Map<String, dynamic> data =
                           document.data()! as Map<String, dynamic>;
                       return GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          routerService.subCategoryListViewNavigatorRouter(
+                              context, data);
+                        },
                         child: Card(
                           child: Padding(
                             padding: const EdgeInsets.only(

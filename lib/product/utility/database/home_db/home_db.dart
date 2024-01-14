@@ -36,6 +36,12 @@ enum HomeServiceDB {
 
   // list query parameter
 
+  Stream<QuerySnapshot<Map<String, dynamic>>> get subCategory =>
+      FirebaseFirestore.instance
+          .collection(name)
+          .where("ACTIVE", isEqualTo: true)
+          .snapshots();
+
   Stream<QuerySnapshot<Map<String, dynamic>>> get productShowCaseList =>
       FirebaseFirestore.instance
           .collection(name)
@@ -44,6 +50,13 @@ enum HomeServiceDB {
 
   Stream<QuerySnapshot<Map<String, dynamic>>> get mainCategoryList =>
       FirebaseFirestore.instance.collection(name).snapshots();
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> subCategoryList(
+          Map<String, dynamic> data) =>
+      FirebaseFirestore.instance
+          .collection(name)
+          .where("MAINCATEGORYID", isEqualTo: data['ID'])
+          .snapshots();
 
   Stream<QuerySnapshot<Map<String, dynamic>>> get appBlogList =>
       FirebaseFirestore.instance

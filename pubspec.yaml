@@ -56,6 +56,7 @@ dependencies:
   intro_slider: ^3.0.10
   data_connection_checker_nulls: ^0.0.2
   cached_network_image: ^3.3.1
+  
 
 
   # utility
@@ -69,6 +70,7 @@ dependencies:
   logger: ^2.0.2
   percent_indicator: ^4.2.3
   table_calendar: ^3.0.9
+  url_launcher: ^6.1.6
 
 dev_dependencies:
   flutter_test:
@@ -98,6 +100,9 @@ flutter:
 
   # app no connection images
     - assets/images/noconnection_img/
+  
+  # app error images
+    - assets/images/error_img/
 
   # profile view images
     - assets/images/profile_img/

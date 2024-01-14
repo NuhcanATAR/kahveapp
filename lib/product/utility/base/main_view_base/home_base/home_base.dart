@@ -3,10 +3,14 @@
 import 'package:data_connection_checker_nulls/data_connection_checker_nulls.dart';
 import 'package:flutter/material.dart';
 import 'package:kahve/feature/main_view/noconnection/noconnection_view.dart';
+import 'package:kahve/product/router/main_view_router/home_router/home_router.dart';
 import 'package:logger/logger.dart';
 import '../../../../../product/extension/view_size.dart';
 
 abstract class MainHomeBaseState<T extends StatefulWidget> extends State<T> {
+  // router service
+  HomeRouterService routerService = HomeRouterService();
+
   // screens size
   double dynamicWidth(double value) => maxWidth * value;
   double dynamicHeight(double value) => maxHeight * value;

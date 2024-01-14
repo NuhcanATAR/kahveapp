@@ -1,0 +1,3 @@
+class SearchModelService {
+  String input = "";
+}

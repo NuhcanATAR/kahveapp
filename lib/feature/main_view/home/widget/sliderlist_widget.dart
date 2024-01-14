@@ -6,11 +6,13 @@ import 'package:kahve/product/utility/database/home_db/home_db.dart';
 
 class SliderListWidget extends StatelessWidget {
   const SliderListWidget({
+    required this.routerService,
     required this.maxWidth,
     required this.dynamicHeight,
     super.key,
   });
 
+  final dynamic routerService;
   final dynamic maxWidth;
   final dynamic dynamicHeight;
 
@@ -83,7 +85,13 @@ class SliderListWidget extends StatelessWidget {
 
   // banner card widget
   Widget buildBannerCardWidget(context, data) => GestureDetector(
-        onTap: () {},
+        onTap: () {
+          if (data['URLSTATUS'] == true) {
+            routerService.webPageViewNavigatorRouter(context, data);
+          } else if (data['PRODUCTSTATUS'] == true) {
+            routerService.productDetailViewNavigatorRouter(context, data);
+          } else {}
+        },
         child: Card(
           child: SizedBox(
             width: maxWidth,
