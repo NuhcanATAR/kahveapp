@@ -7,6 +7,7 @@ enum HomeServiceDB {
   MAINCATEGORY,
   SUBCATEGORY,
   BLOGS,
+  FAVORITE,
   BANNERS;
 
   // one-time query parameter
@@ -33,6 +34,13 @@ enum HomeServiceDB {
           .collection(name)
           .doc(data['SUBCATEGORYID'])
           .get();
+
+  CollectionReference get productFavoriteRef =>
+      FirebaseFirestore.instance.collection(name);
+
+  Future<DocumentSnapshot<Map<String, dynamic>>> productFavoriteRefTable(
+          Map<String, dynamic> data) =>
+      FirebaseFirestore.instance.collection(name).doc(data['ID']).get();
 
   // list query parameter
 
