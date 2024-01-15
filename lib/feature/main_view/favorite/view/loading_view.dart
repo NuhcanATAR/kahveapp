@@ -4,9 +4,8 @@ import 'package:kahve/product/widget/text_widget/body_medium_text.dart';
 import 'package:kahve/product/widget/text_widget/label_medium_text.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-class LoadingProductView extends StatelessWidget {
-  const LoadingProductView(
-      {required this.title, required this.subTitle, super.key});
+class LoadingView extends StatelessWidget {
+  const LoadingView({required this.title, required this.subTitle, super.key});
 
   final String title;
   final String subTitle;

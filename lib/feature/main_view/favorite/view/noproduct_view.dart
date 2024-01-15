@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:kahve/product/constants/color_constants.dart';
+import 'package:kahve/product/constants/img_constants.dart';
 import 'package:kahve/product/widget/text_widget/body_medium_text.dart';
 import 'package:kahve/product/widget/text_widget/label_medium_text.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-class LoadingProductView extends StatelessWidget {
-  const LoadingProductView(
-      {required this.title, required this.subTitle, super.key});
+class NoProductView extends StatelessWidget {
+  const NoProductView({required this.title, required this.subTitle, super.key});
 
   final String title;
   final String subTitle;
@@ -18,13 +16,10 @@ class LoadingProductView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          // loading
+          // img
           Padding(
-            padding: const EdgeInsets.only(bottom: 15),
-            child: LoadingAnimationWidget.hexagonDots(
-              color: ColorBackgroundConstant.greenDarker,
-              size: 35,
-            ),
+            padding: const EdgeInsets.only(left: 50, right: 50, bottom: 10),
+            child: AppErrorImgConstant.appErrorImg.toImg,
           ),
           // title
           Padding(
