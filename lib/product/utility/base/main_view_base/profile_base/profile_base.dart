@@ -134,7 +134,7 @@ abstract class MainProfileBase<T extends StatefulWidget> extends State<T>
         ),
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      print(err);
+      modelService.logger.e(err);
     });
   }
 }

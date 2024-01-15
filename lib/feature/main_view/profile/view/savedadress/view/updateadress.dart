@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kahve/product/constants/color_constants.dart';
 import 'package:kahve/product/model/main_view_model/profile_model/profile_model.dart';

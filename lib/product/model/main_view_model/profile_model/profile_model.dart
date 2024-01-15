@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:logger/logger.dart';
 
 List<String> cityList = <String>[
   "Çorum",
@@ -34,4 +35,6 @@ class ProfileServiceModel {
       return null;
     }
   }
+
+  dynamic logger = Logger();
 }
