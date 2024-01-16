@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kahve/feature/main_view/basket/view/ordercreatesection_views/orderconfirmation_view.dart';
-import 'package:kahve/feature/main_view/basket/view/ordercreatesection_views/ordercreate_view.dart';
-import 'package:kahve/feature/main_view/basket/view/ordercreatesection_views/orderendloading_view.dart';
-import 'package:kahve/feature/main_view/basket/view/ordercreatesection_views/orderendmsg_view.dart';
+import 'package:kahve/feature/main_view/basket/view/ordercreatesection_views/orderconfirmation/orderconfirmation_view.dart';
+import 'package:kahve/feature/main_view/basket/view/ordercreatesection_views/ordercreate/ordercreate_view.dart';
+import 'package:kahve/feature/main_view/basket/view/ordercreatesection_views/ordercreate/orderendloading_view.dart';
+import 'package:kahve/feature/main_view/basket/view/ordercreatesection_views/ordercreate/orderendmsg_view.dart';
 import 'package:kahve/feature/main_view/bottommenu_view/bottommenu_view.dart';
 import 'package:kahve/feature/main_view/home/view/productdetail/productdetail_view.dart';
 import 'package:kahve/feature/main_view/profile/view/savedadress/view/createadress.dart';
