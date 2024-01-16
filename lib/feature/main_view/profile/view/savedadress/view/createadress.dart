@@ -43,8 +43,12 @@ class _CreateAdressViewState extends MainProfileBase<CreateAdressView> {
           padding: context.padding.normal,
           child: ListView(
             children: <Widget>[
+              // name surname
+              buildNameSurnameWidget,
               // adres title
               buildAdressTitleWidget,
+              // phone number
+              buildPhoneNumberWidget,
               // select city
               buildAdressSelectCityWidget,
               // adress description
@@ -57,6 +61,68 @@ class _CreateAdressViewState extends MainProfileBase<CreateAdressView> {
       ),
     );
   }
+
+  // name surname
+  Widget get buildNameSurnameWidget => Row(
+        children: <Widget>[
+          // NAME
+          Flexible(
+            fit: FlexFit.tight,
+            flex: 1,
+            child: Container(
+              padding: const EdgeInsets.all(5),
+              margin: const EdgeInsets.only(bottom: 10),
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.2),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(4),
+                ),
+              ),
+              child: TextFormField(
+                controller: modelService.adressNameController,
+                validator: modelService.adressNameValidator,
+                style: GoogleFonts.nunito(
+                  textStyle: context.general.textTheme.labelMedium?.copyWith(
+                    color: Colors.black,
+                  ),
+                ),
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Ad *",
+                ),
+              ),
+            ),
+          ),
+          // SURNAME
+          Flexible(
+            fit: FlexFit.tight,
+            flex: 1,
+            child: Container(
+              padding: const EdgeInsets.all(5),
+              margin: const EdgeInsets.only(bottom: 10),
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.2),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(4),
+                ),
+              ),
+              child: TextFormField(
+                controller: modelService.adressSurnameController,
+                validator: modelService.adressSurnameValidator,
+                style: GoogleFonts.nunito(
+                  textStyle: context.general.textTheme.labelMedium?.copyWith(
+                    color: Colors.black,
+                  ),
+                ),
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Soyad *",
+                ),
+              ),
+            ),
+          ),
+        ],
+      );
 
   // adres title
   Widget get buildAdressTitleWidget => Container(
@@ -79,6 +145,32 @@ class _CreateAdressViewState extends MainProfileBase<CreateAdressView> {
           decoration: const InputDecoration(
             border: InputBorder.none,
             hintText: "Adres Başlığı *",
+          ),
+        ),
+      );
+
+  // phone number
+  Widget get buildPhoneNumberWidget => Container(
+        padding: const EdgeInsets.all(5),
+        margin: const EdgeInsets.only(bottom: 10),
+        decoration: BoxDecoration(
+          color: Colors.grey.withOpacity(0.2),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(4),
+          ),
+        ),
+        child: TextFormField(
+          controller: modelService.adressPhoneNumberController,
+          validator: modelService.adressPhoneNumberValidator,
+          style: GoogleFonts.nunito(
+            textStyle: context.general.textTheme.labelMedium?.copyWith(
+              color: Colors.black,
+            ),
+          ),
+          keyboardType: TextInputType.phone,
+          decoration: const InputDecoration(
+            border: InputBorder.none,
+            hintText: "Telefon Numarası *",
           ),
         ),
       );

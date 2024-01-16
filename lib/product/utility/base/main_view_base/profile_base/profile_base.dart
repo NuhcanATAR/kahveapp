@@ -64,6 +64,9 @@ abstract class MainProfileBase<T extends StatefulWidget> extends State<T>
   Future<void> adressCreate() async {
     return await ProfileDb.ADRESS.userAdressDoc.add({
       "ID": null,
+      "NAME": modelService.adressNameController.text,
+      "SURNAME": modelService.adressSurnameController.text,
+      "PHONENUMBER": modelService.adressPhoneNumberController.text,
       "ADRESSTITLE": modelService.adressTitleController.text,
       "ADRESSDESCRIPTION": modelService.adressDescriptionController.text,
       "CITY": modelService.selectCityValue.toString(),
@@ -85,6 +88,9 @@ abstract class MainProfileBase<T extends StatefulWidget> extends State<T>
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       modelService.adressTitleController.clear();
       modelService.adressDescriptionController.clear();
+      modelService.adressNameController.clear();
+      modelService.adressSurnameController.clear();
+      modelService.adressPhoneNumberController.clear();
     }).catchError((err) {
       final snackBar = SnackBar(
         content: const Text("Hata Oluştu, Tekrar Deneyiniz!"),
@@ -99,13 +105,25 @@ abstract class MainProfileBase<T extends StatefulWidget> extends State<T>
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       modelService.adressTitleController.clear();
       modelService.adressDescriptionController.clear();
+      modelService.adressNameController.clear();
+      modelService.adressSurnameController.clear();
+      modelService.adressPhoneNumberController.clear();
     });
   }
 
   // adres edit
-  Future<void> adressEdit(Map<String, dynamic> data, String adressTitle,
-      String adressDescription, String adressCity) async {
+  Future<void> adressEdit(
+      Map<String, dynamic> data,
+      String adressTitle,
+      String adressDescription,
+      String adressCity,
+      String name,
+      String surname,
+      String phoneNumber) async {
     await ProfileDb.ADRESS.userAdressRef(data).update({
+      "NAME": name,
+      "SURNAME": surname,
+      "PHONENUMBER": phoneNumber,
       "ADRESSTITLE": adressTitle,
       "ADRESSDESCRIPTION": adressDescription,
       "CITY": adressCity,

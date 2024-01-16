@@ -89,7 +89,7 @@ class _SubCategoryListViewState extends MainHomeBaseState<SubCategoryListView> {
         padding: const EdgeInsets.only(top: 15),
         child: GestureDetector(
           onTap: () {
-            routerService.productListViewNavigatorRouter(context, widget.data);
+            routerService.productListViewNavigatorRouter(context, data);
           },
           child: Card(
             child: Container(

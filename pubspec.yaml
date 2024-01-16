@@ -110,6 +110,9 @@ flutter:
     - assets/images/splash_img/
   # splash sliders images
     - assets/images/slider_img/
+
+  # basket images
+    - assets/images/basket_img/
   
   # register icons
     - assets/icons/register_icons/

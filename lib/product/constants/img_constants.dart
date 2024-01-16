@@ -9,6 +9,16 @@ enum AppMainImgConstant {
   Image get toImg => Image.asset(toPng);
 }
 
+enum AppBasketImgConstant {
+  appSuccessfulImg('undraw_Order_delivered_re_v4ab');
+
+  final String value;
+  const AppBasketImgConstant(this.value);
+
+  String get toPng => "assets/images/basket_img/$value.png";
+  Image get toImg => Image.asset(toPng);
+}
+
 enum AppErrorImgConstant {
   appErrorImg('error_img');
 

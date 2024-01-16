@@ -16,6 +16,18 @@ class UpdateAdressView extends StatefulWidget {
 }
 
 class _UpdateAdressViewState extends MainProfileBase<UpdateAdressView> {
+  late TextEditingController adressNameController = TextEditingController(
+    text: widget.data['NAME'],
+  );
+
+  late TextEditingController adressSurnameController = TextEditingController(
+    text: widget.data['SURNAME'],
+  );
+
+  late TextEditingController adressPhoneNumberController =
+      TextEditingController(
+    text: widget.data['PHONENUMBER'],
+  );
   late TextEditingController adressTitleController = TextEditingController(
     text: widget.data['ADRESSTITLE'],
   );
@@ -29,6 +41,9 @@ class _UpdateAdressViewState extends MainProfileBase<UpdateAdressView> {
 
   late String newTitle = widget.data['ADRESSTITLE'];
   late String newDescription = widget.data['ADRESSDESCRIPTION'];
+  late String newName = widget.data['NAME'];
+  late String newSurname = widget.data['SURNAME'];
+  late String newPhoneNumber = widget.data['PHONENUMBER'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,8 +73,12 @@ class _UpdateAdressViewState extends MainProfileBase<UpdateAdressView> {
           padding: context.padding.normal,
           child: ListView(
             children: <Widget>[
+              // name surname
+              buildNameSurnameWidget,
               // adres title
               buildAdressTitleWidget,
+              // phone number
+              buildPhoneNumberWidget,
               // select city
               buildAdressSelectCityWidget,
               // adress description
@@ -72,6 +91,78 @@ class _UpdateAdressViewState extends MainProfileBase<UpdateAdressView> {
       ),
     );
   }
+
+  // name surname
+  Widget get buildNameSurnameWidget => Row(
+        children: <Widget>[
+          // NAME
+          Flexible(
+            fit: FlexFit.tight,
+            flex: 1,
+            child: Container(
+              padding: const EdgeInsets.all(5),
+              margin: const EdgeInsets.only(bottom: 10),
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.2),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(4),
+                ),
+              ),
+              child: TextFormField(
+                controller: adressNameController,
+                validator: modelService.adressNameValidator,
+                onChanged: (String value) {
+                  setState(() {
+                    newName = value;
+                  });
+                },
+                style: GoogleFonts.nunito(
+                  textStyle: context.general.textTheme.labelMedium?.copyWith(
+                    color: Colors.black,
+                  ),
+                ),
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Ad *",
+                ),
+              ),
+            ),
+          ),
+          // SURNAME
+          Flexible(
+            fit: FlexFit.tight,
+            flex: 1,
+            child: Container(
+              padding: const EdgeInsets.all(5),
+              margin: const EdgeInsets.only(bottom: 10),
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.2),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(4),
+                ),
+              ),
+              child: TextFormField(
+                controller: adressSurnameController,
+                validator: modelService.adressSurnameValidator,
+                onChanged: (String value) {
+                  setState(() {
+                    newSurname = value;
+                  });
+                },
+                style: GoogleFonts.nunito(
+                  textStyle: context.general.textTheme.labelMedium?.copyWith(
+                    color: Colors.black,
+                  ),
+                ),
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Soyad *",
+                ),
+              ),
+            ),
+          ),
+        ],
+      );
 
   // adres title
   Widget get buildAdressTitleWidget => Container(
@@ -99,6 +190,37 @@ class _UpdateAdressViewState extends MainProfileBase<UpdateAdressView> {
           decoration: const InputDecoration(
             border: InputBorder.none,
             hintText: "Adres Başlığı *",
+          ),
+        ),
+      );
+
+  // phone number
+  Widget get buildPhoneNumberWidget => Container(
+        padding: const EdgeInsets.all(5),
+        margin: const EdgeInsets.only(bottom: 10),
+        decoration: BoxDecoration(
+          color: Colors.grey.withOpacity(0.2),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(4),
+          ),
+        ),
+        child: TextFormField(
+          controller: adressPhoneNumberController,
+          validator: modelService.adressPhoneNumberValidator,
+          onChanged: (value) {
+            setState(() {
+              newPhoneNumber = value;
+            });
+          },
+          style: GoogleFonts.nunito(
+            textStyle: context.general.textTheme.labelMedium?.copyWith(
+              color: Colors.black,
+            ),
+          ),
+          keyboardType: TextInputType.phone,
+          decoration: const InputDecoration(
+            border: InputBorder.none,
+            hintText: "Telefon Numarası *",
           ),
         ),
       );
@@ -183,7 +305,15 @@ class _UpdateAdressViewState extends MainProfileBase<UpdateAdressView> {
   Widget get buildAdressSavedButtonWidget => GestureDetector(
         onTap: () {
           if (modelService.formAdressUpdKey.currentState!.validate()) {
-            adressEdit(widget.data, newTitle, newDescription, adressCityValue);
+            adressEdit(
+              widget.data,
+              newTitle,
+              newDescription,
+              adressCityValue,
+              newName,
+              newSurname,
+              newPhoneNumber,
+            );
           }
         },
         child: SizedBox(

@@ -153,6 +153,9 @@ abstract class MainHomeBaseState<T extends StatefulWidget> extends State<T> {
             "SMALLPRICE": data['SMALLPRICE'],
             "MEDIUMPRICE": data['MEDIUMPRICE'],
             "LARGEPRICE": data['LARGEPRICE'],
+            "COFFESMALLSTATUS": modelService.isSmallStatus,
+            "COFFEMEDIUMSTATUS": modelService.isMediumStatus,
+            "COFFELARGESTATUS": modelService.isLargeStatus,
             "MAINCATEGORY": data['MAINCATEGORYID'],
             "SUBCATEGORY": data['SUBCATEGORYID'],
             "PRODUCTTITLE": data['TITLE'],
@@ -160,6 +163,7 @@ abstract class MainHomeBaseState<T extends StatefulWidget> extends State<T> {
             "PRODUCTIMG1": data['COVERIMG'],
             "PRODUCTABOUT": data['EXPLANATION'],
             "PRODUCTSELLTYPE": data['SELLTYPE'],
+            "DATE": FieldValue.serverTimestamp(),
           }).then((value) async {
             String valueDocID = value.id;
             value.update({"ID": valueDocID});
@@ -226,6 +230,7 @@ abstract class MainHomeBaseState<T extends StatefulWidget> extends State<T> {
           "PRODUCTIMG1": data['COVERIMG'],
           "PRODUCTABOUT": data['EXPLANATION'],
           "PRODUCTSELLTYPE": data['SELLTYPE'],
+          "DATE": FieldValue.serverTimestamp(),
         }).then((value) async {
           String valueDocID = value.id;
           value.update({"ID": valueDocID});
