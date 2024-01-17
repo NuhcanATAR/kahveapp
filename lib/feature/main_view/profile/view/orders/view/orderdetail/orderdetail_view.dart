@@ -80,6 +80,7 @@ class _OrderDetailViewState extends MainOrderBase<OrderDetailView> {
         data: data,
         maxWidth: maxWidth,
         dynamicHeight: dynamicHeight,
+        routerService: routerService,
       );
 
   // order delivery adress
