@@ -11,11 +11,13 @@ class OrderProductListWidget extends StatelessWidget {
       {required this.data,
       required this.maxWidth,
       required this.dynamicHeight,
+      required this.routerService,
       super.key});
 
   final Map<String, dynamic> data;
   final dynamic maxWidth;
   final dynamic dynamicHeight;
+  final dynamic routerService;
 
   @override
   Widget build(BuildContext context) {
@@ -106,44 +108,82 @@ class OrderProductListWidget extends StatelessWidget {
                           Flexible(
                             fit: FlexFit.tight,
                             flex: 1,
-                            child: Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: SizedBox(
-                                width: maxWidth,
-                                height: dynamicHeight(0.13),
-                                child: CachedNetworkImage(
-                                  imageUrl: dataProduct['PRODUCTIMG1'],
-                                  imageBuilder: (context, imageProvider) =>
-                                      Container(
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: imageProvider,
-                                        fit: BoxFit.cover,
-                                      ),
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(4),
+                            child: FutureBuilder<DocumentSnapshot>(
+                              future: OrderServiceDB.PRODUCTS
+                                  .productRef(dataProduct),
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                                if (snapshot.hasError) {
+                                  return const SizedBox();
+                                }
+
+                                if (snapshot.hasData &&
+                                    !snapshot.data!.exists) {
+                                  return const SizedBox();
+                                }
+
+                                if (snapshot.connectionState ==
+                                    ConnectionState.done) {
+                                  Map<String, dynamic> dataIndex =
+                                      snapshot.data!.data()
+                                          as Map<String, dynamic>;
+                                  return GestureDetector(
+                                    onTap: () {
+                                      routerService
+                                          .productDetailViewNavigatorRouter(
+                                              context, dataIndex);
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5),
+                                      child: SizedBox(
+                                        width: maxWidth,
+                                        height: dynamicHeight(0.13),
+                                        child: CachedNetworkImage(
+                                          imageUrl: dataProduct['PRODUCTIMG1'],
+                                          imageBuilder:
+                                              (context, imageProvider) =>
+                                                  Container(
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                image: imageProvider,
+                                                fit: BoxFit.cover,
+                                              ),
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                Radius.circular(4),
+                                              ),
+                                            ),
+                                          ),
+                                          placeholder: (context, url) =>
+                                              Container(
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  Colors.grey.withOpacity(0.3),
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                Radius.circular(4),
+                                              ),
+                                            ),
+                                          ),
+                                          errorWidget: (context, url, error) =>
+                                              Container(
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  Colors.grey.withOpacity(0.3),
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                Radius.circular(4),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  placeholder: (context, url) => Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey.withOpacity(0.3),
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(4),
-                                      ),
-                                    ),
-                                  ),
-                                  errorWidget: (context, url, error) =>
-                                      Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey.withOpacity(0.3),
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(4),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
+                                  );
+                                } else {
+                                  return const SizedBox();
+                                }
+                              },
                             ),
                           ),
                           // information
