@@ -19,6 +19,19 @@ enum AppBasketImgConstant {
   Image get toImg => Image.asset(toPng);
 }
 
+enum AppOrderImgConstant {
+  appOrderTick('icons8-success-50'),
+  appOrderInProgress('icons8-box-64'),
+  appOrderCourier('icons8-deliver-64'),
+  appOrderDelivered('icons8-handle-with-care-50');
+
+  final String value;
+  const AppOrderImgConstant(this.value);
+
+  String get toPng => "assets/images/order_img/$value.png";
+  Image get toImg => Image.asset(toPng);
+}
+
 enum AppErrorImgConstant {
   appErrorImg('error_img');
 

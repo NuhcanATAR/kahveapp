@@ -111,8 +111,12 @@ flutter:
   # splash sliders images
     - assets/images/slider_img/
 
+
   # basket images
     - assets/images/basket_img/
+  
+  # order images
+    - assets/images/order_img/
   
   # register icons
     - assets/icons/register_icons/
