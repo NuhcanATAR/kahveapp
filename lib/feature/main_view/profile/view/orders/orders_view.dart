@@ -78,15 +78,15 @@ class _OrdersViewState extends MainOrderBase<OrdersView> {
                       routerService: routerService,
                     );
                   } else {
-                    return NoOrderView(
-                      title: OrderStrings.noOrderTitleText.value,
-                      subTitle: OrderStrings.noOrderSubTitleText.value,
-                    );
+                    return const SizedBox();
                   }
                 }).toList(),
               );
             } else {
-              return const SizedBox();
+              return NoOrderView(
+                title: OrderStrings.noOrderTitleText.value,
+                subTitle: OrderStrings.noOrderSubTitleText.value,
+              );
             }
           },
         ),

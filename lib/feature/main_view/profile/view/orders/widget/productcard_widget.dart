@@ -68,7 +68,7 @@ class OrderProductCardWidget extends StatelessWidget {
                             padding: const EdgeInsets.only(left: 10),
                             child: LabelMediumBlackText(
                               text:
-                                  "${data['ORDERDAY']}.${data['ORDERDAY']}.${data['ORDERDAY']}",
+                                  "${data['ORDERDAY']}.${data['ORDERMONTH']}.${data['ORDERYEAR']}",
                               textAlign: TextAlign.left,
                             ),
                           ),
