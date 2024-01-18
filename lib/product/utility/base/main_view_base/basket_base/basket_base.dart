@@ -8,6 +8,8 @@ import 'package:kahve/product/utility/database/basket_db/basket_db.dart';
 import 'package:kahve/product/utility/service/firebase_service.dart';
 import 'package:logger/logger.dart';
 import '../../../../../product/extension/view_size.dart';
+import 'package:kahve/feature/main_view/noconnection/noconnection_view.dart';
+import 'package:data_connection_checker_nulls/data_connection_checker_nulls.dart';
 
 abstract class MainBasketBase<T extends StatefulWidget> extends State<T>
     with BasketMixinVoid {
@@ -27,6 +29,21 @@ abstract class MainBasketBase<T extends StatefulWidget> extends State<T>
     super.initState();
     fetchRefCategories();
     title = [];
+    checkControl();
+  }
+
+void checkControl() async {
+    bool result = await DataConnectionChecker().hasConnection;
+    if (result == true) {
+      Logger().i("İnternet Bağlandı!!");
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const NoConnectionErrorView(),
+        ),
+      );
+    }
   }
 
   late List<AdressLocations> title;
