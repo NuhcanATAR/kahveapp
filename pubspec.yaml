@@ -40,15 +40,8 @@ dependencies:
   firebase_core: ^2.15.1
   cloud_firestore: ^4.9.1
   firebase_auth: ^4.9.0
-  firebase_ui_auth: ^1.8.0
-  firebase_ui_oauth_google: ^1.2.11
-  firebase_storage: ^11.2.6
-  
-
   # core
   kartal: ^3.5.0
-  equatable: ^2.0.5
-  flutter_riverpod: ^2.4.0
   shared_preferences: ^2.2.1
   connectivity_plus: ^3.0.2
   internet_connection_checker: ^1.0.0+1
@@ -57,19 +50,13 @@ dependencies:
   data_connection_checker_nulls: ^0.0.2
   cached_network_image: ^3.3.1
   
-
-
   # utility
-  animated_text_kit: ^4.2.2
   loading_animation_widget: ^1.2.0+4
   hexcolor: ^3.0.1
-  contained_tab_bar_view: ^0.8.0
   google_fonts: ^5.1.0
   carousel_slider: ^4.2.1
   animate_do: ^3.1.2
   logger: ^2.0.2
-  percent_indicator: ^4.2.3
-  table_calendar: ^3.0.9
   url_launcher: ^6.1.6
 
 dev_dependencies:
